@@ -6,7 +6,7 @@ import java.math.*;
  * Auto-generated code below aims at helping you parse
  * the standard input according to the problem statement.
  **/
-class Tron {
+class Player {
 
     public static void main(String args[]) {
         Scanner in = new Scanner(System.in);
@@ -31,18 +31,17 @@ class Tron {
                 int Y0 = in.nextInt(); // starting Y coordinate of lightcycle (or -1)
                 int X1 = in.nextInt(); // starting X coordinate of lightcycle (can be the same as X0 if you play before this player)
                 int Y1 = in.nextInt(); // starting Y coordinate of lightcycle (can be the same as Y0 if you play before this player)
-                grille[Y1][X1] = (char)i;
+                grille[Y1][X1] = Character.forDigit(i, 16);
             }
 
             
-            /*
             for (int i = 0 ; i < 20 ; i ++) {
                 for (int y = 0 ; y < 30 ; y ++) {
-                    System.err.print(grille[i][y] + " ");
+                    System.err.print(grille[i][y] + " "); //debug
                 }
-                System.err.println();
+                System.err.println(); //debug
             }
-            */
+            
 
             // Write an action using System.out.println()
             // To debug: System.err.println("Debug messages...");
