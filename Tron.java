@@ -15,6 +15,17 @@ class Tron {
         while (true) {
             int N = in.nextInt(); // total number of players (2 to 4).
             int P = in.nextInt(); // your player number (0 to 3).
+            
+            char [][] grille = new char[30][20];
+            for (int boucleur_1 = 0 ; boucleur_1 < 30 ; boucleur_1 ++) {
+                for (int boucleur_2 = 0 ; boucleur_2 < 20 ; boucleur_2 ++) {
+                    grille[boucleur_1][boucleur_2] = 'o';
+
+                }
+            }
+
+            //System.err.println(Arrays.toString(grille));
+            
             for (int i = 0; i < N; i++) {
                 int X0 = in.nextInt(); // starting X coordinate of lightcycle (or -1)
                 int Y0 = in.nextInt(); // starting Y coordinate of lightcycle (or -1)
