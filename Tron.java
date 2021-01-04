@@ -22,10 +22,10 @@ class Tron {
                 int Y0 = in.nextInt(); // starting Y coordinate of lightcycle (or -1)
                 int X1 = in.nextInt(); // starting X coordinate of lightcycle (can be the same as X0 if you play before this player)
                 int Y1 = in.nextInt(); // starting Y coordinate of lightcycle (can be the same as Y0 if you play before this player)
-                grille[Y0][X0] = Character.forDigit(i, 16);
+                grille[Y0][X0] = Character.forDigit(i, 16); //Conversion en caractère
                 grille[Y1][X1] = Character.forDigit(i, 16);
                 if (i == P) {
-                    currentX = X1;
+                    currentX = X1; // récupération coordonnées quand tour du joueur
                     currentY = Y1;
                 }
             }
@@ -33,7 +33,14 @@ class Tron {
             System.out.println(direction);
         }
     }
-
+    /**
+    * Initialise un tableau de caractère pour la grille de jeu
+    * Cases du tableau initialisées à 'o'
+    *
+    * @param grilleVide
+    *     Double tableau de char
+    * @return Le tableau remplit de caractèress 'o'
+    */
     public static char[][] initGrille(char[][] grilleVide) {
         for (int i = 0 ; i < 20 ; i ++) {
             for (int j = 0 ; j < 30 ; j ++) {
@@ -43,8 +50,21 @@ class Tron {
         return grilleVide;
     }
     
+    /**
+    * Décide de la direction à prendre pour le joueur
+    *
+    * @param grilleJeu
+    *     Grille de jeu en temps réelle, remplie par les mouvements des diff. joueurs
+    * @param currentX
+    *     Position actuelle du joueur en abscisses
+    * @param currentY
+    *     Position actuelle du joueur en ordonnée
+    * @param direction
+    *     Direction prise par le joueur au tour d'avant
+    * @return La direction choisie, soit "LEFT", "RIGHT", "UP" ou "DOWN"
+    */
     public static String actionChoisie(char[][] grilleJeu, int currentX, int currentY, String direction) {
-        boolean enCours = true;
+        boolean enCours = true; 
         String decision = "null";
         if (direction != "null") {
             decision = maintienDirection(grilleJeu, currentX, currentY, enCours, direction);
@@ -78,6 +98,19 @@ class Tron {
         return "null";
     }
 
+    /**
+    * Fonction permettant le maintien dans une direction dès lors qu'elle est engagée
+    *
+    * @param currentGrille
+    *     Grille de jeu en temps réelle, remplie par les mouvements des diff. joueurs
+    * @param currentX
+    *     Position actuelle du joueur en abscisses
+    * @param currentY
+    *     Position actuelle du joueur en ordonnée
+    * @param running
+    *     Booléen indiquant si une direction est active ou non
+    * @return La direction choisie, soit "LEFT", "RIGHT", "UP" ou "DOWN"
+    */
     public static String maintienDirection(char[][] currentGrille, int currentX, int currentY, boolean running, String dir) {
         if (dir == "LEFT") {
             if (currentX-1 != -1 && running)
@@ -95,6 +128,9 @@ class Tron {
         return "null";
     }
 
+    /**
+    * Fonction permettant de prendre la direction "LEFT"
+    */
     public static String dirGauche(char[][] currentGrille, int currentX, int currentY, boolean running) {
         if (currentGrille[currentY][currentX-1] == 'o') {
             running = false;
@@ -102,7 +138,9 @@ class Tron {
         } 
         return "null";  
     }
-
+    /**
+    * Fonction permettant de prendre la direction "RIGHt"
+    */
     public static String dirDroite(char[][] currentGrille, int currentX, int currentY, boolean running) {
         if (currentGrille[currentY][currentX+1] == 'o') {
             running = false;
@@ -110,7 +148,9 @@ class Tron {
         } 
         return "null";  
     }
-
+    /**
+    * Fonction permettant de prendre la direction "UP"
+    */
     public static String dirHaut(char[][] currentGrille, int currentX, int currentY, boolean running) {
         if (currentGrille[currentY-1][currentX] == 'o') {
             running = false;
@@ -118,7 +158,9 @@ class Tron {
         } 
         return "null";  
     }
-
+    /**
+    * Fonction permettant de prendre la direction "DOWN"
+    */
     public static String dirBas(char[][] currentGrille, int currentX, int currentY, boolean running) {
         if (currentGrille[currentY+1][currentX] == 'o') {
             running = false;
